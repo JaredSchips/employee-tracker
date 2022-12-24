@@ -1,5 +1,7 @@
 inquirer = require('inquirer')
 const db = require('./config/connection')
+const cTable = require('console.table')
+const { employeeActions, roleActions, departmentActions } = require('./helpers/actions')
 
 const actions = [
     'View All Employees',
@@ -20,8 +22,46 @@ const menu = () => {
             message: 'What would you like to do?',
             choices: actions
         }
-    ).then(responses => {
+    ).then(async responses => {
         const { action } = responses
+        switch (action) {
+            case 'View All Employees':
+                const employees = await employeeActions.view()
+                console.table(employees)
+                return menu()
+            
+            case 'Add Employee':
+                await employeeActions.add()
+                return menu()
+            
+            case 'Update Employee Role':
+                await employeeActions.updateRole()
+                return menu()
+            
+            case 'View All Roles':
+                const roles = await roleActions.view()
+                console.table(roles)
+                return menu()
+            
+            case 'Add Role':
+                await roleActions.add()
+                return menu()
+            
+            case 'View All Departments':
+                const departments = await departmentActions.view()
+                console.table(departments)
+                return menu()
+            
+            case 'Add Departments':
+                await departmentActions.add()
+                return menu()
+            
+            case 'Quit':
+                process.exit()
+            
+            default:
+                break;
+        }
     })
 }
 
