@@ -3,7 +3,7 @@ const db = require('../config/connection')
 const roleActions = require('./roleActions')
 
 const view = async () => {
-    const [result, data] = await db.query('SELECT * FROM employee')
+    const [result, data] = await db.query('SELECT employee.id, employee.first_name, employee.last_name, title, salary, concat(manager.first_name, " ", manager.last_name) AS manager, department.name AS department FROM employee LEFT JOIN role ON employee.role_id = role.id LEFT JOIN department ON role.department_id = department.id LEFT JOIN employee AS manager ON employee.manager_id = manager.id')
     return result
 }
 
@@ -80,7 +80,7 @@ const updateRole = async () => {
         const { employeeId, roleId } = responses
         db.query('UPDATE employee SET role_id=? WHERE id=?',
         [roleId, employeeId])
-        console.log('Role updated')
+        console.log(`Role updated.`)
     })
 }
 

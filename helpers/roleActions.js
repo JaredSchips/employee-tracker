@@ -3,7 +3,7 @@ const db = require('../config/connection')
 const departmentActions = require('./departmentActions')
 
 const view = async () => {
-    const [result, data] = await db.query('SELECT * FROM role')
+    const [result, data] = await db.query('SELECT role.id, title, salary, name AS department FROM role LEFT JOIN department ON role.department_id = department.id')
     return result
 }
 
