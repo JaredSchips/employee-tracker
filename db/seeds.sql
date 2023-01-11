@@ -6,11 +6,11 @@ VALUES
 
 INSERT INTO role (title, salary, department_id)
 VALUES
-    ('Sales Representative', 15, 1),
-    ('Sales Manager', 20, 1),
-    ('HR Representative', 15, 2),
-    ('Security Guard', 25, 3),
-    ('Security Manager', 20, 3);
+    ('Sales Representative', 80000, 1),
+    ('Sales Manager', 100000, 1),
+    ('HR Representative', 80000, 2),
+    ('Security Guard', 80000, 3),
+    ('Security Manager', 100000, 3);
 
 INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES
