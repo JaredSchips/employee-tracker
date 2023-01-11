@@ -10,7 +10,7 @@ const actions = [
     'View All Roles',
     'Add Role',
     'View All Departments',
-    'Add Departments',
+    'Add Department',
     'Quit'
 ]
 
@@ -52,7 +52,7 @@ const menu = () => {
                 console.table(departments)
                 return menu()
             
-            case 'Add Departments':
+            case 'Add Department':
                 await departmentActions.add()
                 return menu()
             
