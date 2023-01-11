@@ -14,6 +14,7 @@ const add = async () => {
             value: row.id
         }
     })
+    employeeChoices.push({name: 'None', value: null})
     const roles = await roleActions.view()
     const roleChoices = roles.map(row => {return {
             name: row.title,
